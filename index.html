@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Podliczanie kosztów — usterki / wykroczenia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Lista kategorii — usterki / wykroczenia</h1>
+    <p class="hint">Zaznacz po lewej, ustaw ilość po prawej. Na dole zobaczysz łączną kwotę (min — max).</p>
+  </header>
+
+  <main class="container">
+    <!-- Kategoria: Wykroczenia drogowe -->
+    <section class="category">
+      <button class="category-header" aria-expanded="true">Wykroczenia drogowe</button>
+      <div class="category-body">
+        <ul class="items">
+          <li class="item" data-min="5000" data-max="5000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Jazda pod wpływem alkoholu lub substancji odurzających</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Dodatkowe: Odholowanie pojazdu, Kwota min: 5000, Kwota max: 5000)</div>
+              <input type="number" class="qty" min="1" value="1" title="Ilość" />
+            </div>
+          </li>
+
+          <li class="item" data-min="5000" data-max="5000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Jazda bez prawa jazdy</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Dodatkowe: Odholowanie pojazdu, Kwota min: 5000, Kwota max: 5000)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+
+          <li class="item" data-min="2000" data-max="8000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Przekroczenie prędkości w mieście</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Dodatkowe: Dopuszczalny błąd radaru -10km/h, Kwota min: 2000, Kwota max: 8000)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+
+          <li class="item" data-min="4000" data-max="4000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Brawurowa jazda</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Dodatkowe: Brak, Kwota min: 4000, Kwota max: 4000)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+
+          <li class="item" data-min="500" data-max="500">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Przejazd na czerwonym świetle</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Dodatkowe: Brak, Kwota min: 500, Kwota max: 500)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+
+          <li class="item" data-min="3000" data-max="3000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Zniszczenie mienia</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Dodatkowe: Brak, Kwota min: 3000, Kwota max: 3000)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Kategoria: Usterki/naprawy (przykład) -->
+    <section class="category">
+      <button class="category-header" aria-expanded="false">Usterki / Naprawy</button>
+      <div class="category-body" hidden>
+        <ul class="items">
+          <li class="item" data-min="200" data-max="500">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Wymiana żarówki / drobna naprawa</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Kwota min: 200, Kwota max: 500)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+
+          <li class="item" data-min="1000" data-max="3000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Naprawa elementu zawieszenia</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Kwota min: 1000, Kwota max: 3000)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+
+          <li class="item" data-min="2000" data-max="5000">
+            <label class="item-left">
+              <input type="checkbox" class="item-checkbox" />
+              <span class="item-title">Poważna naprawa silnika</span>
+            </label>
+            <div class="item-right">
+              <div class="item-price">(Kwota min: 2000, Kwota max: 5000)</div>
+              <input type="number" class="qty" min="1" value="1" />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Możesz dodać kolejne kategorie podobnie -->
+  </main>
+
+  <footer class="summary">
+    <div class="totals">
+      <div>Łącznie (min): <strong id="total-min">0 zł</strong></div>
+      <div>Łącznie (max): <strong id="total-max">0 zł</strong></div>
+    </div>
+    <div class="pay">
+      Ile musi osoba zapłacić: <span id="pay-range">0 zł — 0 zł</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
