@@ -1,146 +1,444 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Podliczanie kosztów — usterki / wykroczenia</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodeks Półświatka Przestępczego | Warszawa RP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f13;
+            --bg-card: #1a1a20;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-gold: #d4af37;
+            --accent-red: #c92a2a;
+            --border-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Header --- */
+        header {
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(15,15,19,1) 100%), url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* --- Sections --- */
+        section {
+            margin-bottom: 4rem;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            color: var(--accent-red);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: var(--accent-gold);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* --- Special Components --- */
+        .highlight-box {
+            background: rgba(201, 42, 42, 0.1);
+            border-left: 4px solid var(--accent-red);
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ffcccc;
+        }
+
+        .gold-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* --- Levels Grid --- */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .level-card {
+            background: #222;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .level-card h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .level-stats {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .level-stats li {
+            border-bottom: 1px solid #333;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price-tag {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* --- Punishment Table Styling --- */
+        .punishment-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .punishment-item {
+            display: flex;
+            flex-direction: column;
+            background: #151515;
+            padding: 1rem;
+            border-left: 3px solid var(--accent-red);
+        }
+        
+        .punishment-title {
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .punishment-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .punishment-desc {
+                flex: 1;
+                margin-right: 1rem;
+            }
+            .punishment-action {
+                min-width: 150px;
+                text-align: right;
+                color: var(--accent-red);
+                font-weight: bold;
+            }
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+        }
+
+        .discord-tag {
+            background: #5865F2;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Lista kategorii — usterki / wykroczenia</h1>
-    <p class="hint">Zaznacz po lewej, ustaw ilość po prawej. Na dole zobaczysz łączną kwotę (min — max).</p>
-  </header>
 
-  <main class="container">
-    <!-- Kategoria: Wykroczenia drogowe -->
-    <section class="category">
-      <button class="category-header" aria-expanded="true">Wykroczenia drogowe</button>
-      <div class="category-body">
-        <ul class="items">
-          <li class="item" data-min="5000" data-max="5000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Jazda pod wpływem alkoholu lub substancji odurzających</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Dodatkowe: Odholowanie pojazdu, Kwota min: 5000, Kwota max: 5000)</div>
-              <input type="number" class="qty" min="1" value="1" title="Ilość" />
-            </div>
-          </li>
+<header>
+    <h1>Kodeks Półświatka Przestępczego</h1>
+    <p>WARSZAWA RP • ZASADY • HIERARCHIA • KONSEKWENCJE</p>
+</header>
 
-          <li class="item" data-min="5000" data-max="5000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Jazda bez prawa jazdy</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Dodatkowe: Odholowanie pojazdu, Kwota min: 5000, Kwota max: 5000)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
+<div class="container">
 
-          <li class="item" data-min="2000" data-max="8000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Przekroczenie prędkości w mieście</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Dodatkowe: Dopuszczalny błąd radaru -10km/h, Kwota min: 2000, Kwota max: 8000)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
-
-          <li class="item" data-min="4000" data-max="4000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Brawurowa jazda</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Dodatkowe: Brak, Kwota min: 4000, Kwota max: 4000)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
-
-          <li class="item" data-min="500" data-max="500">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Przejazd na czerwonym świetle</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Dodatkowe: Brak, Kwota min: 500, Kwota max: 500)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
-
-          <li class="item" data-min="3000" data-max="3000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Zniszczenie mienia</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Dodatkowe: Brak, Kwota min: 3000, Kwota max: 3000)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
+    <section id="chapter-1">
+        <h2>⚔️ ROZDZIAŁ I: DYNAMIKA KONFLIKTU</h2>
+        
+        <h3>1.1. LOKALNY ZATARG (TZW. "KOSA")</h3>
+        <p>Stan napięcia, który nie wymaga zgłoszenia opiekunowi. Rozwiązywany „na ulicy”.</p>
+        <ul>
+            <li><strong>FAZA I (Słowna):</strong> Wyzwiska, ośmieszanie, niszczenie mienia (rysowanie aut), bójki w klubach.</li>
+            <li><strong>FAZA II (Przymus Bezpośredni):</strong> Solówki na pięści, wywózki do lasu, zastraszanie dilerów, kradzież telefonów/towaru.
+                <ul><li><em>Zasada: Cel to upokorzenie lub wymuszenie okupu, nie zabicie.</em></li></ul>
+            </li>
+            <li><strong>FAZA III (Eskalacja Brudna):</strong> Użycie broni białej (kije, noże), masowe wjazdy na dzielnicę.</li>
         </ul>
-      </div>
+        <div class="highlight-box">
+            <strong>⚠️ ZAKAZ BRONI PALNEJ:</strong> Nie strzelamy. Wyciągnięcie klamy na solówkę to <strong>FailRP</strong> grożący warnem dla organizacji.
+        </div>
+
+        <h3>1.2. WOJNA (OTWARTY KONFLIKT)</h3>
+        <p>Stan ostateczny, gdy zawiodły negocjacje. Nie można się strzelać na mieście ani na ulicach publicznych (to wy się boicie policji, nie policja was).</p>
+
+        <h3>1.3. ZASADY OGÓLNE STARĆ</h3>
+        <ul>
+            <li><strong>Inicjacja:</strong> Każdy atak musi być poprzedzony interakcją głosową. Strzelanie „do kropki” (bez słowa) jest surowo karane.</li>
+            <li><strong>Zasada "Słabszego":</strong> Zakaz okradania (lootowania) osoby nieprzytomnej, jeśli nie ma to silnego uzasadnienia fabularnego (np. zabranie telefonu – OK, zabranie butów – warn org).</li>
+            <li><strong>Negocjacje (Cienka Linia):</strong> Preferowaną formą zakończenia starcia jest okup (pieniądze/info) lub dług wdzięczności, a nie śmierć postaci.</li>
+        </ul>
     </section>
 
-    <!-- Kategoria: Usterki/naprawy (przykład) -->
-    <section class="category">
-      <button class="category-header" aria-expanded="false">Usterki / Naprawy</button>
-      <div class="category-body" hidden>
-        <ul class="items">
-          <li class="item" data-min="200" data-max="500">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Wymiana żarówki / drobna naprawa</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Kwota min: 200, Kwota max: 500)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
-
-          <li class="item" data-min="1000" data-max="3000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Naprawa elementu zawieszenia</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Kwota min: 1000, Kwota max: 3000)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
-
-          <li class="item" data-min="2000" data-max="5000">
-            <label class="item-left">
-              <input type="checkbox" class="item-checkbox" />
-              <span class="item-title">Poważna naprawa silnika</span>
-            </label>
-            <div class="item-right">
-              <div class="item-price">(Kwota min: 2000, Kwota max: 5000)</div>
-              <input type="number" class="qty" min="1" value="1" />
-            </div>
-          </li>
+    <section id="chapter-2">
+        <h2>🏙️ ROZDZIAŁ II: TERENY I DYPLOMACJA</h2>
+        
+        <h3>2.1. WPŁYWY I TERENY</h3>
+        <ul>
+            <li>Teren to strefa wpływów biznesowych, a nie „kwadrat na mapie”.</li>
+            <li><strong>Przejęcie:</strong> Aby przejąć teren musi być powód: jedna ze stron się poddała LUB doszło do negocjacji.</li>
+            <li><strong>Neutralny Grunt:</strong> Wyznaczone strefy (np. konkretny bar, kino), gdzie obowiązuje <strong>absolutny zakaz przemocy</strong>. Złamanie zasady = zawieszenie organizacji.</li>
         </ul>
-      </div>
+
+        <h3>2.2. SOJUSZE</h3>
+        <ul>
+            <li><strong>Pakt Krwi (Sojusz Militarny):</strong> Maksymalnie 1 aktywny sojusz. Sojusznik może strzelać tylko w obronie twojej ośki. Nie bierze udziału w Twoich atakach.</li>
+            <li><strong>Układy Handlowe:</strong> Nielimitowane. Partnerzy handlowi (dostawcy broni, narko) nie biorą udziału w wojnach.</li>
+        </ul>
     </section>
 
-    <!-- Możesz dodać kolejne kategorie podobnie -->
-  </main>
+    <section id="chapter-3">
+        <h2>🚔 ROZDZIAŁ III: REALIZM OPERACYJNY</h2>
+        <p>Policja na serwerze to realne zagrożenie. Organizacje muszą działać w cieniu.</p>
 
-  <footer class="summary">
-    <div class="totals">
-      <div>Łącznie (min): <strong id="total-min">0 zł</strong></div>
-      <div>Łącznie (max): <strong id="total-max">0 zł</strong></div>
-    </div>
-    <div class="pay">
-      Ile musi osoba zapłacić: <span id="pay-range">0 zł — 0 zł</span>
-    </div>
-  </footer>
+        <h3>3.1. ZASADA "HOT CAR" I DZIUPLE</h3>
+        <ul>
+            <li>Pojazd użyty w przestępstwie (porwanie, strzelanina) jest uznany za „spalony”.</li>
+            <li><strong>Obowiązek:</strong> Auto musi zniknąć w "Dziupli" (ukryty garaż/lokalizacja) na minimum 1 godzinę.</li>
+            <li><strong>FailRP:</strong> Jazda tym samym autem po mieście chwilę po strzelaninie skutkuje namierzeniem przez policję i konfiskatą wozu.</li>
+        </ul>
 
-  <script src="script.js"></script>
+        <h3>3.2. ZŁOTA GODZINA</h3>
+        <ul>
+            <li>Po każdej głośnej akcji (strzały, wybuchy), cała organizacja ma obowiązek zniknąć z ulic na <strong>3 godziny</strong>.</li>
+            <li><strong>Zakaz:</strong> Tankowania na publicznych stacjach, stania w centrum, afczenia przed domem.</li>
+            <li><strong>Konsekwencja:</strong> Niezastosowanie się to "Błąd Operacyjny" – warn org albo zawieszenie.</li>
+        </ul>
+
+        <h3>3.3. LOGISTYKA I MEDYCYNA</h3>
+        <ul>
+            <li><strong>Szpital Publiczny:</strong> Ryzyko aresztowania (lekarze wzywają PD). Grupy powinny korzystać z „szarej strefy” medycznej (przejęcie lekarza na swoją stronę).</li>
+            <li><strong>Efekt Bólu:</strong> Po wyjściu ze stanu BW, postać ma zakaz używania broni i biegania przez 30 minut.</li>
+        </ul>
+    </section>
+
+    <section id="chapter-4">
+        <h2>🏢 ROZDZIAŁ IV: STRUKTURA I ORGANIZACJA</h2>
+        <ul>
+            <li><strong>4.1. LEGALNA PRZYKRYWKA:</strong> Każda grupa może prowadzić aktywny legalny biznes (pralnia pieniędzy, baza spotkań). Zaniedbanie biznesu skutkuje kontrolami skarbowymi.</li>
+            <li><strong>4.2. HIERARCHIA:</strong>
+                <ul>
+                    <li><em>Mieszkaniec (Rekrut):</em> Niewtajemniczony, "chłopiec na posyłki". Jeśli wpadnie, grupa się go wypiera.</li>
+                    <li><em>Lider:</em> Odpowiada głową i portfelem za błędy ludzi. Jeśli rekrut zrobi RDM, karę dostaje cała organizacja.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="chapter-5">
+        <h2>🚫 ROZDZIAŁ V: SYSTEM KAR</h2>
+        <p>Kary mają boleć finansowo i fabularnie, aby zniechęcić do "grania w strzelankę".</p>
+        
+        <div class="punishment-grid">
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">1. Brak Strachu (FearRP)</div>
+                    Kozaczenie do broni, atak 1vs5, brak instynktu przetrwania.
+                </div>
+                <div class="punishment-action">Warn org / Zawieszenie</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">2. RDM (Brak Inicjacji)</div>
+                    Strzał bez rozmowy, atak bez powodu.
+                </div>
+                <div class="punishment-action">Zawieszenie / Perm Ban Org</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">3. Meta-Gaming</div>
+                    Info z Discorda, "magiczne radio".
+                </div>
+                <div class="punishment-action">Warn org / Zawieszenie</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">4. FailRP</div>
+                    Brak utylizacji auta, jazda "spalonym" wozem.
+                </div>
+                <div class="punishment-action">Warn org</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="chapter-6">
+        <h2>📌 ROZDZIAŁ VI: SYSTEM POZIOMÓW</h2>
+        <p>Rozwój jest dobrowolny, ale wymagany do odblokowania ciężkich narkotyków i handlu bronią.</p>
+
+        <div class="levels-grid">
+            <div class="level-card">
+                <h3>🔹 Poziom 1</h3>
+                <p style="text-align: center; color: #888; margin-bottom: 10px;">Start Organizacji</p>
+                <ul class="level-stats">
+                    <li>👥 Maks. 10 członków</li>
+                    <li>🗺️ Maks. 1 teren</li>
+                    <li>⚔️ Brak możliwości wojen</li>
+                    <li>🤝 1 sojusz</li>
+                    <li>🚫 Brak handlu bronią</li>
+                    <li>🟢 Greenzone na 1 tydzień</li>
+                </ul>
+            </div>
+
+            <div class="level-card">
+                <h3>🔹 Poziom 2</h3>
+                <p style="text-align: center; color: #888; margin-bottom: 10px;">Stabilna Organizacja</p>
+                <ul class="level-stats">
+                    <li>👥 Maks. 13 członków</li>
+                    <li>🗺️ Maks. 3 tereny</li>
+                    <li>💼 1 firma</li>
+                    <li>⚔️ 1 aktywna wojna</li>
+                    <li>🔫 Możliwy handel bronią</li>
+                    <li>🌿 Dostęp do heroiny</li>
+                </ul>
+                <div class="price-tag">Koszt: 10k BK + 17k CK</div>
+            </div>
+
+            <div class="level-card" style="border-top-color: var(--accent-red);">
+                <h3>🔹 Poziom 3</h3>
+                <p style="text-align: center; color: #888; margin-bottom: 10px;">Potęga Podziemia</p>
+                <ul class="level-stats">
+                    <li>👥 Maks. 15 członków</li>
+                    <li>🗺️ Maks. 5 terenów</li>
+                    <li>💼 1 firma</li>
+                    <li>⚔️ 1 wojna + obrona sojusznika</li>
+                    <li>💉 Dostęp do fentanylu i morfiny</li>
+                </ul>
+                <div class="price-tag" style="color: var(--accent-red); background: rgba(201, 42, 42, 0.1);">Koszt: 20k BK + 27k CK</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="chapter-7-8">
+        <h2>💰 ULEPSZENIA I BIZNESY</h2>
+        
+        <h3>PROCEDURA ULEPSZENIA</h3>
+        <p>Lider otwiera ticket <span class="discord-tag">#1455310216458670262</span>.</p>
+        <ul>
+            <li><strong>Przekazanie kasy:</strong> Brudna i czysta kasa musi zostać przekazana botowi w trakcie akcji RP (np. opłacenie "haraczu").</li>
+            <li><strong>Weryfikacja:</strong> Opiekun sprawdza logi i aktualizuje rangę.</li>
+        </ul>
+
+        <h3>PRANIE PIENIĘDZY (Lvl 2 & 3)</h3>
+        <ul>
+            <li>Organizacje od 2 poziomu mogą posiadać 1 firmę na serwerze MAIN.</li>
+            <li>Jeśli firma zostanie zamknięta przez Policję za malwersacje, organizacja traci możliwość prania na <strong>2 tygodnie</strong>.</li>
+        </ul>
+    </section>
+
+    <section id="golden-rules">
+        <h2 style="color: var(--accent-gold); border-bottom-color: var(--accent-gold);">💡 ZŁOTE ZASADY GRACZA</h2>
+        <div class="gold-box">
+            <ul>
+                <li><strong>Szanuj Życie:</strong> Twoja postać chce żyć. Śmierć to koniec historii, a nie respawn.</li>
+                <li><strong>Dialog przed Strzałem:</strong> Prawdziwe RP to rozmowa. Strzał to ostateczność.</li>
+                <li><strong>Dyskrecja to Potęga:</strong> Im ciszej działasz, tym dłużej rządzisz.</li>
+                <li><strong>Przegrywaj z Klasą:</strong> Strach, ból i upokorzenie budują lepszą historię niż bycie niezniszczalnym.</li>
+            </ul>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--accent-red);">
+            <strong>Ważne:</strong> Przekroczenie limitu członków = kara 5000 BK. Handel bez uprawnień = konfiskata towaru i blokada awansu na 14 dni. Złamanie Greenzone (Lvl 1) = usunięcie organizacji.
+        </p>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Kodeks Półświatka Przestępczego. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
 </body>
-</html>
+  </html>
