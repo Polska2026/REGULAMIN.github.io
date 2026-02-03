@@ -63,6 +63,54 @@
             padding: 2rem 1rem;
         }
 
+        /* --- Tabs Navigation (NOWE) --- */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 1rem 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-red);
+            color: #fff;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 15px rgba(201, 42, 42, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- Sections --- */
         section {
             margin-bottom: 4rem;
@@ -222,6 +270,20 @@
             border-radius: 4px;
             font-family: monospace;
             font-size: 0.8em;
+            cursor: pointer;
+        }
+        
+        .list-none {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .list-none li {
+            background: rgba(255,255,255,0.03);
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            border-left: 2px solid #444;
         }
     </style>
 </head>
@@ -234,304 +296,538 @@
 
 <div class="container">
 
-    <section id="chapter-1">
-        <h2>⚔️ ROZDZIAŁ I: DYNAMIKA KONFLIKTU</h2>
-        
-        <h3>1.1. LOKALNY ZATARG (TZW. "KOSA")</h3>
-        <p>Stan napięcia, który nie wymaga zgłoszenia opiekunowi. Rozwiązywany „na ulicy”.</p>
-        <ul>
-            <li><strong>FAZA I (Słowna):</strong> Wyzwiska, ośmieszanie, niszczenie mienia (rysowanie aut), bójki w klubach.</li>
-            <li><strong>FAZA II (Przymus Bezpośredni):</strong> Solówki na pięści, wywózki do lasu, zastraszanie dilerów, kradzież telefonów/towaru.
-                <ul><li><em>Zasada: Cel to upokorzenie lub wymuszenie okupu, nie zabicie.</em></li></ul>
-            </li>
-            <li><strong>FAZA III (Eskalacja Brudna):</strong> Użycie broni białej (kije, noże), masowe wjazdy na dzielnicę.</li>
-        </ul>
-        <div class="highlight-box">
-            <strong>⚠️ ZAKAZ BRONI PALNEJ:</strong> Nie strzelamy. Wyciągnięcie klamy na solówkę to <strong>FailRP</strong> grożący warnem dla organizacji.
-        </div>
-
-        <h3>1.2. WOJNA (OTWARTY KONFLIKT)</h3>
-           <p>Wojna to stan ostateczny. Każda organizacja musi pamiętać, że miasto żyje – strzelanina w centrum przyciąga dziesiątki jednostek policji, co kończy się końcem grupy (wywózki, konfiskaty).</p>
-
-    <div class="highlight-box">
-        <strong>ZŁOTA ZASADA:</strong> Wojna to nie "polowanie na głowy" 24/7, tylko strategiczne uderzenia.
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="openTab('tab-kodeks')">KODEKS GŁÓWNY</button>
+        <button class="tab-btn" onclick="openTab('tab-zarabianie')">ZARABIANIE & NAPADY</button>
+        <button class="tab-btn" onclick="openTab('tab-discord')">REGULAMIN DISCORD</button>
     </div>
 
-    <h3>ZASADY PROWADZENIA KONFLIKTU:</h3>
-    <ul>
-        <li><strong>Zakaz "Miejsc Publicznych":</strong> Zabronione jest strzelanie się pod Komendą, Szpitalem, w centrach handlowych oraz na głównych autostradach. Akcje wojenne prowadzimy w zaułkach, dokach, lasach lub na terenach organizacji.</li>
-        <li><strong>Inicjacja Zbiorowa:</strong> Przed rozpoczęciem strzelaniny liderzy muszą "otworzyć ogień" werbalnie (np. przez telefon lub spotkanie). Nie ma czegoś takiego jak strzelanie do każdego, kto nosi kolor wroga bez słowa.</li>
-        <li><strong>Limit Ataków:</strong> Organizacja może dokonać maksymalnie <strong>dwóch</strong> zorganizowanych uderzeń na wroga w ciągu 24h. Zapobiega to Mass RDM i bezsensownemu "odradzaniu się i bieganiu z powrotem".</li>
-        <li><strong>Utylizacja i Ucieczka:</strong> Po strzelaninie masz maksymalnie 5 minut na opuszczenie miejsca zdarzenia. Jeśli zostaniesz – licz się z konsekwencjami IC ze strony PD.</li>
-    </ul>
-
-    <h3>ANTY-FAIL SYSTEM (STOP RDM/CL):</h3>
-    <div class="punishment-grid">
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">Stop Mass RDM</div>
-                Atakowanie więcej niż 3 osób naraz bez uprzedniego ticketu wojennego lub akceptacji opiekuna jest traktowane jako Mass RDM.
-            </div>
-            <div class="punishment-action">Rozwiązanie organizacji</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">Zakaz Combat Log (CL)</div>
-                Jeśli zginiesz w trakcie wojny – musisz poczekać na medyka lub dokończyć akcję. Wyjście z gry (alt+f4) to ban bez możliwości powrotu do org.
-            </div>
-            <div class="punishment-action">Perm Ban / Czarna lista</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">Power-Gaming (Nieludzka odporność)</div>
-                Jeśli zostałeś postrzelony, odgrywasz rany. Zakaz wsiadania do auta i driftowania 10 sekund po wyjściu ze szpitala (tzw. "szpital-front").
-            </div>
-            <div class="punishment-action">Warn org</div>
-        </div>
-    </div>
-
-    <div class="gold-box">
-        <strong>💡 RADA DLA SZERÓW:</strong> Jeśli wasza wojna zamienia się w bezmyślne strzelanie na środku ulicy, Administracja jak i opiekun nałoży karę na obie grupy, co zablokuje wam zarobki na 48h.
-    </div>
-
-        <h3>1.3. ZASADY OGÓLNE STARĆ</h3>
-        <ul>
-            <li><strong>Inicjacja:</strong> Każdy atak musi być poprzedzony rozmową z przeciwną organizacją. Strzelanie „do ludzi” (bez słowa) jest surowo karane.</li>
-            <li><strong>Zasada "Słabszego":</strong> Zakaz okradania (lootowania) osoby nieprzytomnej, jeśli nie ma to silnego uzasadnienia fabularnego.</li>
-            <li><strong>Negocjacje (Cienka Linia):</strong> Preferowaną formą zakończenia starcia jest okup (pieniądze/info) lub dług wdzięczności, a nie śmierć postaci.</li>
-        </ul>
-    </section>
-
-    <section id="chapter-2">
-        <h2>🏙️ ROZDZIAŁ II: TERENY I DYPLOMACJA</h2>
-        
-        <h3>2.1. WPŁYWY I TERENY</h3>
-        <ul>
-            <li>Teren to strefa wpływów biznesowych, a nie „kwadrat na mapie”.</li>
-            <li><strong>Przejęcie:</strong> Aby przejąć teren musi być powód: jedna ze stron się poddała LUB doszło do negocjacji.</li>
-            <li><strong>Neutralny Grunt:</strong> Wyznaczone strefy (np. konkretny bar, kino), gdzie obowiązuje <strong>absolutny zakaz przemocy</strong>. Złamanie zasady = zawieszenie organizacji.</li>
-        </ul>
-
-        <h3>2.2. SOJUSZE</h3>
-        <ul>
-            <li><strong>Pakt Krwi (Sojusz Militarny):</strong> Maksymalnie 1 aktywny sojusz. Sojusznik może strzelać tylko w obronie twojej ośki. Nie bierze udziału w Twoich atakach.</li>
-            <li><strong>Układy Handlowe:</strong> Nielimitowane. Partnerzy handlowi (dostawcy broni, narko) nie biorą udziału w wojnach.</li>
-        </ul>
-    </section>
-
-    <section id="chapter-3">
-        <h2>🚔 ROZDZIAŁ III: REALIZM OPERACYJNY</h2>
-        <p>Policja na serwerze to realne zagrożenie. Organizacje muszą działać w cieniu.</p>
-
-        <h3>3.1. ZASADA "HOT CAR" I DZIUPLE</h3>
-        <ul>
-            <li>Pojazd użyty w przestępstwie (porwanie, strzelanina) jest uznany za „spalony”.</li>
-            <li><strong>Obowiązek/niewymagany:</strong> Auto może zniknąć do "Dziupli" (ukryty garaż/lokalizacja) na minimum 1 godzinę.</li>
-        </ul>
-
-        <h3>3.2. ZŁOTA GODZINA</h3>
-        <ul>
-            <li>Po każdej głośnej akcji (strzały, wybuchy), cała organizacja może zniknąć z ulic na <strong> kilka godzin</strong>.</li>
-            <li><strong>Zakaz:</strong> Tankowania na publicznych stacjach, stania w centrum, afczenia przed domem.</li>
-            <li><strong>Konsekwencja:</strong> Niezastosowanie się to "Błąd Operacyjny" – warn org albo zawieszenie.</li>
-        </ul>
-
-        <h3>3.3. LOGISTYKA I MEDYCYNA</h3>
-        <ul>
-            <li><strong>Szpital Publiczny:</strong> Ryzyko aresztowania (lekarze wzywają PD). Grupy powinny korzystać z „prywatnego” lekarza (przejęcie lekarza na swoją stronę)(np. twój kolega jest ranny po postrzale i idziesz z nim do szpitala)</li>
-            <li><strong>Efekt Bólu:</strong> Po wyjściu ze stanu BW, postać ma zakaz używania broni i biegania przez 30 minut.</li>
-        </ul>
-    </section>
-
-    <section id="chapter-4">
-        <h2>🏢 ROZDZIAŁ IV: STRUKTURA I ORGANIZACJA</h2>
-        <ul>
-            <li><strong>4.1. LEGALNA PRZYKRYWKA:</strong> Każda grupa może prowadzić aktywny legalny biznes (pralnia pieniędzy, baza spotkań). Zaniedbanie biznesu skutkuje kontrolami skarbowymi.</li>
-            <li><strong>4.2. HIERARCHIA:</strong>
-                <ul>
-                    <li><em>Mieszkaniec (Rekrut):</em> Niewtajemniczony, "chłopiec na posyłki". Jeśli wpadnie, grupa się go wypiera.</li>
-                    <li><em>Lider:</em> Odpowiada głową i portfelem za błędy ludzi. Jeśli rekrut zrobi RDM, karę dostaje cała organizacja.</li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-
-    <section id="chapter-5">
-    <h2>🚫 ROZDZIAŁ V: ZAAWANSOWANY SYSTEM KAR</h2>
-    <p>Kary mają na celu eliminację zachowań psujących imersję oraz zniechęcenie do traktowania serwera jak gry typu Deathmatch. Organizacja odpowiada zbiorowo za swoich członków.</p>
-    
-    <div class="punishment-grid">
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">1. Brak Strachu (FearRP)</div>
-                Kozaczenie do broni, ignorowanie przewagi liczebnej (np. 1vs5), brak instynktu przetrwania w sytuacjach zagrożenia życia.
-            </div>
-            <div class="punishment-action">Warn org / Zawieszenie</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">2. RDM (Brak Inicjacji)</div>
-                Oddanie strzału bez uprzedniej rozmowy lub zamienienia zdania lub uzasadnionego powodu fabularnego; atakowanie bez celu.
-            </div>
-            <div class="punishment-action">Zawieszenie / Perm Ban Org</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">3. Meta-Gaming</div>
-                Wykorzystywanie informacji zdobytych poza grą (np. z Discorda, streamów) w świecie IC; tzw. "magiczne radio".
-            </div>
-            <div class="punishment-action">Warn org / Zawieszenie</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">4. FailRP</div>
-                Nierealistyczne zachowania, brak utylizacji "spalonego" auta po akcji, jazda pojazdem nieprzystosowanym do terenu.
-            </div>
-            <div class="punishment-action">Warn org</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">5. Combat Log / EscapeRP</div>
-                Wyjście z serwera (CL) lub celowe "crashowanie" gry podczas trwającej akcji RP, pościgu lub interakcji z PD.
-            </div>
-            <div class="punishment-action">Warn org + Ban indywidualny</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">6. Power-Gaming (PG)</div>
-                Wymuszanie akcji na innym graczu bez dania mu szansy na reakcję (np. "/me uderza go tak mocno, że ten umiera na miejscu").
-            </div>
-            <div class="punishment-action">Warn org</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">7. Nadużycia w Safe Zone</div>
-                Prowokowanie, wyciąganie broni lub ucieczka do stref bezpiecznych (np. szpital, komenda) podczas trwającej akcji.
-            </div>
-            <div class="punishment-action">Warn org / Blokada terenu</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">8. Brak poszanowania zasad "Złotej Godziny"</div>
-                Pokazywanie się w miejscach publicznych lub tankowanie "spalonego" auta przed upływem wymaganego czasu od akcji.
-            </div>
-            <div class="punishment-action">Kara finansowa (haracz)</div>
-        </div>
-
-        <div class="punishment-item">
-            <div class="punishment-desc">
-                <div class="punishment-title">9. Przelewanie majątku (Transfer RP)</div>
-                Nieuzasadnione przekazywanie gotówki lub przedmiotów między członkami różnych organizacji w celu ominięcia limitów.
-            </div>
-            <div class="punishment-action">Wipe majątku / Perm Ban Org</div>
-        </div>
-    </div>
-
-    <div class="highlight-box">
-        <strong>⚠️ GRADACJA KAR:</strong> 
-        <ul>
-            <li><strong>Upomnienie słowna:</strong> Rozmowa ostrzegawcza z liderem.</li>
-            <li><strong>Warn Organizacji:</strong> Oficjalna nagana. 3 warny skutkują natychmiastowym rozwiązaniem grupy.</li>
-            <li><strong>Zawieszenie (Blacklist):</strong> Zakaz wykonywania akcji Crime na okres od 3 do 7 dni.</li>
-            <li><strong>Usunięcie Organizacji:</strong> Całkowita kasacja panelu, terytoriów i majątku organizacji bez możliwości odwołania.</li>
-        </ul>
-    </div>
-    </section>
-    
-
-    <section id="chapter-6">
-        <h2>📌 ROZDZIAŁ VI: SYSTEM POZIOMÓW</h2>
-        <p>Rozwój jest dobrowolny, ale wymagany do odblokowania ciężkich narkotyków i handlu bronią.</p>
-
-        <div class="levels-grid">
-            <div class="level-card">
-                <h3>🔹 Poziom 1</h3>
-                <p style="text-align: center; color: #888; margin-bottom: 10px;">Start Organizacji</p>
-                <ul class="level-stats">
-                    <li>👥 Maks. 10 członków</li>
-                    <li>🗺️ Maks. 1 teren</li>
-                    <li>⚔️ Brak możliwości wojen</li>
-                    <li>🤝 1 sojusz</li>
-                    <li>🚫 Brak handlu bronią</li>
-                    <li>🟢 Greenzone na 1 tydzień</li>
-                </ul>
-            </div>
-
-            <div class="level-card">
-                <h3>🔹 Poziom 2</h3>
-                <p style="text-align: center; color: #888; margin-bottom: 10px;">Stabilna Organizacja</p>
-                <ul class="level-stats">
-                    <li>👥 Maks. 13 członków</li>
-                    <li>🗺️ Maks. 3 tereny</li>
-                    <li>💼 1 firma</li>
-                    <li>⚔️ 1 aktywna wojna</li>
-                    <li>🔫 Możliwy handel bronią</li>
-                    <li>🌿 Dostęp do heroiny</li>
-                </ul>
-                <div class="price-tag">Koszt: 10k BK lub 17k CK</div>
-            </div>
-
-            <div class="level-card" style="border-top-color: var(--accent-red);">
-                <h3>🔹 Poziom 3</h3>
-                <p style="text-align: center; color: #888; margin-bottom: 10px;">Potęga Podziemia</p>
-                <ul class="level-stats">
-                    <li>👥 Maks. 15 członków</li>
-                    <li>🗺️ Maks. 5 terenów</li>
-                    <li>💼 1 firma</li>
-                    <li>⚔️ 1 wojna + obrona sojusznika</li>
-                    <li>💉 Dostęp do fentanylu i morfiny</li>
-                </ul>
-                <div class="price-tag" style="color: var(--accent-red); background: rgba(201, 42, 42, 0.1);">Koszt: 20k BK lub 27k CK</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="chapter-7-8">
-        <h2>💰 ULEPSZENIA I BIZNESY</h2>
-        
-        <h3>PROCEDURA ULEPSZENIA</h3>
-        <p>Lider otwiera ticket <span class="discord-tag">#1455310216458670262</span>.</p>
-        <ul>
-            <li><strong>Przekazanie kasy:</strong> Brudna i czysta kasa musi zostać przekazana botowi w trakcie akcji RP (np. opłacenie "haraczu").</li>
-            <li><strong>Weryfikacja:</strong> Opiekun sprawdza logi i aktualizuje rangę.</li>
-        </ul>
-
-        <h3>PRANIE PIENIĘDZY (Lvl 2 & 3)</h3>
-        <ul>
-            <li>Organizacje od 2 poziomu mogą posiadać 1 firmę na serwerze MAIN.</li>
-            <li>Jeśli firma zostanie zamknięta przez Policję za malwersacje, organizacja traci możliwość prania na <strong>2 tygodnie</strong>.</li>
-        </ul>
-    </section>
-
-    <section id="golden-rules">
-        <h2 style="color: var(--accent-gold); border-bottom-color: var(--accent-gold);">💡 ZŁOTE ZASADY GRACZA</h2>
-        <div class="gold-box">
+    <div id="tab-kodeks" class="tab-content active">
+        <section id="chapter-1">
+            <h2>⚔️ ROZDZIAŁ I: DYNAMIKA KONFLIKTU</h2>
+            
+            <h3>1.1. LOKALNY ZATARG (TZW. "KOSA")</h3>
+            <p>Stan napięcia, który nie wymaga zgłoszenia opiekunowi. Rozwiązywany „na ulicy”.</p>
             <ul>
-                <li><strong>Szanuj Życie:</strong> Twoja postać chce żyć. Śmierć to koniec historii, a nie respawn.</li>
-                <li><strong>Dialog przed Strzałem:</strong> Prawdziwe RP to rozmowa. Strzał to ostateczność.</li>
-                <li><strong>Dyskrecja to Potęga:</strong> Im ciszej działasz, tym dłużej rządzisz.</li>
-                <li><strong>Przegrywaj z Klasą!:</strong> Strach, ból i upokorzenie budują lepszą historię niż bycie niezniszczalnym.</li>
+                <li><strong>FAZA I (Słowna):</strong> Wyzwiska, ośmieszanie, niszczenie mienia (rysowanie aut), bójki w klubach.</li>
+                <li><strong>FAZA II (Przymus Bezpośredni):</strong> Solówki na pięści, wywózki do lasu, zastraszanie dilerów, kradzież telefonów/towaru.
+                    <ul><li><em>Zasada: Cel to upokorzenie lub wymuszenie okupu, nie zabicie.</em></li></ul>
+                </li>
+                <li><strong>FAZA III (Eskalacja Brudna):</strong> Użycie broni białej (kije, noże), masowe wjazdy na dzielnicę.</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>⚠️ ZAKAZ BRONI PALNEJ:</strong> Nie strzelamy. Wyciągnięcie klamy na solówkę to <strong>FailRP</strong> grożący warnem dla organizacji.
+            </div>
+
+            <h3>1.2. WOJNA (OTWARTY KONFLIKT)</h3>
+            <p>Wojna to stan ostateczny. Każda organizacja musi pamiętać, że miasto żyje – strzelanina w centrum przyciąga dziesiątki jednostek policji, co kończy się końcem grupy (wywózki, konfiskaty).</p>
+
+            <div class="highlight-box">
+                <strong>ZŁOTA ZASADA:</strong> Wojna to nie "polowanie na głowy" 24/7, tylko strategiczne uderzenia.
+            </div>
+
+            <h3>ZASADY PROWADZENIA KONFLIKTU:</h3>
+            <ul>
+                <li><strong>Zakaz "Miejsc Publicznych":</strong> Zabronione jest strzelanie się pod Komendą, Szpitalem, w centrach handlowych oraz na głównych autostradach. Akcje wojenne prowadzimy w zaułkach, dokach, lasach lub na terenach organizacji.</li>
+                <li><strong>Inicjacja Zbiorowa:</strong> Przed rozpoczęciem strzelaniny liderzy muszą "otworzyć ogień" werbalnie (np. przez telefon lub spotkanie). Nie ma czegoś takiego jak strzelanie do każdego, kto nosi kolor wroga bez słowa.</li>
+                <li><strong>Limit Ataków:</strong> Organizacja może dokonać maksymalnie <strong>dwóch</strong> zorganizowanych uderzeń na wroga w ciągu 24h. Zapobiega to Mass RDM i bezsensownemu "odradzaniu się i bieganiu z powrotem".</li>
+                <li><strong>Utylizacja i Ucieczka:</strong> Po strzelaninie masz maksymalnie 5 minut na opuszczenie miejsca zdarzenia. Jeśli zostaniesz – licz się z konsekwencjami IC ze strony PD.</li>
+            </ul>
+
+            <h3>ANTY-FAIL SYSTEM (STOP RDM/CL):</h3>
+            <div class="punishment-grid">
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Stop Mass RDM</div>
+                        Atakowanie więcej niż 3 osób naraz bez uprzedniego ticketu wojennego lub akceptacji opiekuna jest traktowane jako Mass RDM.
+                    </div>
+                    <div class="punishment-action">Rozwiązanie organizacji</div>
+                </div>
+
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Zakaz Combat Log (CL)</div>
+                        Jeśli zginiesz w trakcie wojny – musisz poczekać na medyka lub dokończyć akcję. Wyjście z gry (alt+f4) to ban bez możliwości powrotu do org.
+                    </div>
+                    <div class="punishment-action">Perm Ban / Czarna lista</div>
+                </div>
+
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Power-Gaming (Nieludzka odporność)</div>
+                        Jeśli zostałeś postrzelony, odgrywasz rany. Zakaz wsiadania do auta i driftowania 10 sekund po wyjściu ze szpitala (tzw. "szpital-front").
+                    </div>
+                    <div class="punishment-action">Warn org</div>
+                </div>
+            </div>
+
+            <div class="gold-box">
+                <strong>💡 RADA DLA SZERÓW:</strong> Jeśli wasza wojna zamienia się w bezmyślne strzelanie na środku ulicy, Administracja jak i opiekun nałoży karę na obie grupy, co zablokuje wam zarobki na 48h.
+            </div>
+
+            <h3>1.3. ZASADY OGÓLNE STARĆ</h3>
+            <ul>
+                <li><strong>Inicjacja:</strong> Każdy atak musi być poprzedzony rozmową z przeciwną organizacją. Strzelanie „do ludzi” (bez słowa) jest surowo karane.</li>
+                <li><strong>Zasada "Słabszego":</strong> Zakaz okradania (lootowania) osoby nieprzytomnej, jeśli nie ma to silnego uzasadnienia fabularnego.</li>
+                <li><strong>Negocjacje (Cienka Linia):</strong> Preferowaną formą zakończenia starcia jest okup (pieniądze/info) lub dług wdzięczności, a nie śmierć postaci.</li>
+            </ul>
+        </section>
+
+        <section id="chapter-2">
+            <h2>🏙️ ROZDZIAŁ II: TERENY I DYPLOMACJA</h2>
+            
+            <h3>2.1. WPŁYWY I TERENY</h3>
+            <ul>
+                <li>Teren to strefa wpływów biznesowych, a nie „kwadrat na mapie”.</li>
+                <li><strong>Przejęcie:</strong> Aby przejąć teren musi być powód: jedna ze stron się poddała LUB doszło do negocjacji.</li>
+                <li><strong>Neutralny Grunt:</strong> Wyznaczone strefy (np. konkretny bar, kino), gdzie obowiązuje <strong>absolutny zakaz przemocy</strong>. Złamanie zasady = zawieszenie organizacji.</li>
+            </ul>
+
+            <h3>2.2. SOJUSZE</h3>
+            <ul>
+                <li><strong>Pakt Krwi (Sojusz Militarny):</strong> Maksymalnie 1 aktywny sojusz. Sojusznik może strzelać tylko w obronie twojej ośki. Nie bierze udziału w Twoich atakach.</li>
+                <li><strong>Układy Handlowe:</strong> Nielimitowane. Partnerzy handlowi (dostawcy broni, narko) nie biorą udziału w wojnach.</li>
+            </ul>
+        </section>
+
+        <section id="chapter-3">
+            <h2>🚔 ROZDZIAŁ III: REALIZM OPERACYJNY</h2>
+            <p>Policja na serwerze to realne zagrożenie. Organizacje muszą działać w cieniu.</p>
+
+            <h3>3.1. ZASADA "HOT CAR" I DZIUPLE</h3>
+            <ul>
+                <li>Pojazd użyty w przestępstwie (porwanie, strzelanina) jest uznany za „spalony”.</li>
+                <li><strong>Obowiązek/niewymagany:</strong> Auto może zniknąć do "Dziupli" (ukryty garaż/lokalizacja) na minimum 1 godzinę.</li>
+            </ul>
+
+            <h3>3.2. ZŁOTA GODZINA</h3>
+            <ul>
+                <li>Po każdej głośnej akcji (strzały, wybuchy), cała organizacja może zniknąć z ulic na <strong> kilka godzin</strong>.</li>
+                <li><strong>Zakaz:</strong> Tankowania na publicznych stacjach, stania w centrum, afczenia przed domem.</li>
+                <li><strong>Konsekwencja:</strong> Niezastosowanie się to "Błąd Operacyjny" – warn org albo zawieszenie.</li>
+            </ul>
+
+            <h3>3.3. LOGISTYKA I MEDYCYNA</h3>
+            <ul>
+                <li><strong>Szpital Publiczny:</strong> Ryzyko aresztowania (lekarze wzywają PD). Grupy powinny korzystać z „prywatnego” lekarza (przejęcie lekarza na swoją stronę)(np. twój kolega jest ranny po postrzale i idziesz z nim do szpitala)</li>
+                <li><strong>Efekt Bólu:</strong> Po wyjściu ze stanu BW, postać ma zakaz używania broni i biegania przez 30 minut.</li>
+            </ul>
+        </section>
+
+        <section id="chapter-4">
+            <h2>🏢 ROZDZIAŁ IV: STRUKTURA I ORGANIZACJA</h2>
+            <ul>
+                <li><strong>4.1. LEGALNA PRZYKRYWKA:</strong> Każda grupa może prowadzić aktywny legalny biznes (pralnia pieniędzy, baza spotkań). Zaniedbanie biznesu skutkuje kontrolami skarbowymi.</li>
+                <li><strong>4.2. HIERARCHIA:</strong>
+                    <ul>
+                        <li><em>Mieszkaniec (Rekrut):</em> Niewtajemniczony, "chłopiec na posyłki". Jeśli wpadnie, grupa się go wypiera.</li>
+                        <li><em>Lider:</em> Odpowiada głową i portfelem za błędy ludzi. Jeśli rekrut zrobi RDM, karę dostaje cała organizacja.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="chapter-5">
+        <h2>🚫 ROZDZIAŁ V: ZAAWANSOWANY SYSTEM KAR</h2>
+        <p>Kary mają na celu eliminację zachowań psujących imersję oraz zniechęcenie do traktowania serwera jak gry typu Deathmatch. Organizacja odpowiada zbiorowo za swoich członków.</p>
+        
+        <div class="punishment-grid">
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">1. Brak Strachu (FearRP)</div>
+                    Kozaczenie do broni, ignorowanie przewagi liczebnej (np. 1vs5), brak instynktu przetrwania w sytuacjach zagrożenia życia.
+                </div>
+                <div class="punishment-action">Warn org / Zawieszenie</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">2. RDM (Brak Inicjacji)</div>
+                    Oddanie strzału bez uprzedniej rozmowy lub zamienienia zdania lub uzasadnionego powodu fabularnego; atakowanie bez celu.
+                </div>
+                <div class="punishment-action">Zawieszenie / Perm Ban Org</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">3. Meta-Gaming</div>
+                    Wykorzystywanie informacji zdobytych poza grą (np. z Discorda, streamów) w świecie IC; tzw. "magiczne radio".
+                </div>
+                <div class="punishment-action">Warn org / Zawieszenie</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">4. FailRP</div>
+                    Nierealistyczne zachowania, brak utylizacji "spalonego" auta po akcji, jazda pojazdem nieprzystosowanym do terenu.
+                </div>
+                <div class="punishment-action">Warn org</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">5. Combat Log / EscapeRP</div>
+                    Wyjście z serwera (CL) lub celowe "crashowanie" gry podczas trwającej akcji RP, pościgu lub interakcji z PD.
+                </div>
+                <div class="punishment-action">Warn org + Ban indywidualny</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">6. Power-Gaming (PG)</div>
+                    Wymuszanie akcji na innym graczu bez dania mu szansy na reakcję (np. "/me uderza go tak mocno, że ten umiera na miejscu").
+                </div>
+                <div class="punishment-action">Warn org</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">7. Nadużycia w Safe Zone</div>
+                    Prowokowanie, wyciąganie broni lub ucieczka do stref bezpiecznych (np. szpital, komenda) podczas trwającej akcji.
+                </div>
+                <div class="punishment-action">Warn org / Blokada terenu</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">8. Brak poszanowania zasad "Złotej Godziny"</div>
+                    Pokazywanie się w miejscach publicznych lub tankowanie "spalonego" auta przed upływem wymaganego czasu od akcji.
+                </div>
+                <div class="punishment-action">Kara finansowa (haracz)</div>
+            </div>
+
+            <div class="punishment-item">
+                <div class="punishment-desc">
+                    <div class="punishment-title">9. Przelewanie majątku (Transfer RP)</div>
+                    Nieuzasadnione przekazywanie gotówki lub przedmiotów między członkami różnych organizacji w celu ominięcia limitów.
+                </div>
+                <div class="punishment-action">Wipe majątku / Perm Ban Org</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>⚠️ GRADACJA KAR:</strong> 
+            <ul>
+                <li><strong>Upomnienie słowna:</strong> Rozmowa ostrzegawcza z liderem.</li>
+                <li><strong>Warn Organizacji:</strong> Oficjalna nagana. 3 warny skutkują natychmiastowym rozwiązaniem grupy.</li>
+                <li><strong>Zawieszenie (Blacklist):</strong> Zakaz wykonywania akcji Crime na okres od 3 do 7 dni.</li>
+                <li><strong>Usunięcie Organizacji:</strong> Całkowita kasacja panelu, terytoriów i majątku organizacji bez możliwości odwołania.</li>
             </ul>
         </div>
-        <p style="font-size: 0.9rem; color: var(--accent-red);">
-            <strong>Ważne:</strong> Przekroczenie limitu członków = kara 5000 BK. Handel bez uprawnień = konfiskata towaru i blokada awansu na 14 dni. Złamanie Greenzone (Lvl 1) = usunięcie organizacji.
-        </p>
-    </section>
+        </section>
+        
+
+        <section id="chapter-6">
+            <h2>📌 ROZDZIAŁ VI: SYSTEM POZIOMÓW</h2>
+            <p>Rozwój jest dobrowolny, ale wymagany do odblokowania ciężkich narkotyków i handlu bronią.</p>
+
+            <div class="levels-grid">
+                <div class="level-card">
+                    <h3>🔹 Poziom 1</h3>
+                    <p style="text-align: center; color: #888; margin-bottom: 10px;">Start Organizacji</p>
+                    <ul class="level-stats">
+                        <li>👥 Maks. 10 członków</li>
+                        <li>🗺️ Maks. 1 teren</li>
+                        <li>⚔️ Brak możliwości wojen</li>
+                        <li>🤝 1 sojusz</li>
+                        <li>🚫 Brak handlu bronią</li>
+                        <li>🟢 Greenzone na 1 tydzień</li>
+                    </ul>
+                </div>
+
+                <div class="level-card">
+                    <h3>🔹 Poziom 2</h3>
+                    <p style="text-align: center; color: #888; margin-bottom: 10px;">Stabilna Organizacja</p>
+                    <ul class="level-stats">
+                        <li>👥 Maks. 13 członków</li>
+                        <li>🗺️ Maks. 3 tereny</li>
+                        <li>💼 1 firma</li>
+                        <li>⚔️ 1 aktywna wojna</li>
+                        <li>🔫 Możliwy handel bronią</li>
+                        <li>🌿 Dostęp do heroiny</li>
+                    </ul>
+                    <div class="price-tag">Koszt: 10k BK lub 17k CK</div>
+                </div>
+
+                <div class="level-card" style="border-top-color: var(--accent-red);">
+                    <h3>🔹 Poziom 3</h3>
+                    <p style="text-align: center; color: #888; margin-bottom: 10px;">Potęga Podziemia</p>
+                    <ul class="level-stats">
+                        <li>👥 Maks. 15 członków</li>
+                        <li>🗺️ Maks. 5 terenów</li>
+                        <li>💼 1 firma</li>
+                        <li>⚔️ 1 wojna + obrona sojusznika</li>
+                        <li>💉 Dostęp do fentanylu i morfiny</li>
+                    </ul>
+                    <div class="price-tag" style="color: var(--accent-red); background: rgba(201, 42, 42, 0.1);">Koszt: 20k BK lub 27k CK</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="chapter-7-8">
+            <h2>💰 ULEPSZENIA I BIZNESY</h2>
+            
+            <h3>PROCEDURA ULEPSZENIA</h3>
+            <p>Lider otwiera ticket <span class="discord-tag">#1455310216458670262</span>.</p>
+            <ul>
+                <li><strong>Przekazanie kasy:</strong> Brudna i czysta kasa musi zostać przekazana botowi w trakcie akcji RP (np. opłacenie "haraczu").</li>
+                <li><strong>Weryfikacja:</strong> Opiekun sprawdza logi i aktualizuje rangę.</li>
+            </ul>
+
+            <h3>PRANIE PIENIĘDZY (Lvl 2 & 3)</h3>
+            <ul>
+                <li>Organizacje od 2 poziomu mogą posiadać 1 firmę na serwerze MAIN.</li>
+                <li>Jeśli firma zostanie zamknięta przez Policję za malwersacje, organizacja traci możliwość prania na <strong>2 tygodnie</strong>.</li>
+            </ul>
+        </section>
+
+        <section id="golden-rules">
+            <h2 style="color: var(--accent-gold); border-bottom-color: var(--accent-gold);">💡 ZŁOTE ZASADY GRACZA</h2>
+            <div class="gold-box">
+                <ul>
+                    <li><strong>Szanuj Życie:</strong> Twoja postać chce żyć. Śmierć to koniec historii, a nie respawn.</li>
+                    <li><strong>Dialog przed Strzałem:</strong> Prawdziwe RP to rozmowa. Strzał to ostateczność.</li>
+                    <li><strong>Dyskrecja to Potęga:</strong> Im ciszej działasz, tym dłużej rządzisz.</li>
+                    <li><strong>Przegrywaj z Klasą!:</strong> Strach, ból i upokorzenie budują lepszą historię niż bycie niezniszczalnym.</li>
+                </ul>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--accent-red);">
+                <strong>Ważne:</strong> Przekroczenie limitu członków = kara 5000 BK. Handel bez uprawnień = konfiskata towaru i blokada awansu na 14 dni. Złamanie Greenzone (Lvl 1) = usunięcie organizacji.
+            </p>
+        </section>
+    </div>
+
+    <div id="tab-zarabianie" class="tab-content">
+        <section>
+            <h2>💰 REGULAMIN ZARABIANIA NA CRIME (ER:LC)</h2>
+            
+            <h3>§1 Zasady ogólne</h3>
+            <ul>
+                <li>1.1 Zarabianie na crime musi odbywać się realistycznie i zgodnie z RP.</li>
+                <li>1.2 Zakaz farmienia pieniędzy poprzez bugi lub multikonta.</li>
+                <li>1.3 Każda forma zarobku musi mieć odegrane RP.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§2 Dozwolone formy zarabiania</h2>
+            <ul class="list-none">
+                <li>✅ Sklep <strong>1+ criminal</strong> / <strong>2+ policjanci</strong></li>
+                <li>✅ Bank <strong>3-6 criminal</strong> / <strong>5+ policjanci</strong></li>
+                <li>✅ Jubiler <strong>2+ criminal</strong> / <strong>3+ policjanci</strong></li>
+                <li>✅ ATM <strong>1+ criminal</strong> / <strong>2+ policjanci</strong></li>
+                <li>✅ Kradzież auta <strong>1+ criminal</strong> / <strong>2+ policjanci</strong></li>
+                <li>✅ Okradanie domu <strong>2+ criminal</strong> / <strong>3+ policjanci</strong></li>
+                <li>✅ Napaść (z lub bez kradzieży) <strong>1+ criminal</strong> / <strong>2+ policjanci</strong></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§3 Ograniczenia</h2>
+            <ul>
+                <li>3.1 Zakaz żądania nierealnych kwot (np. milionów za cywila).</li>
+                <li>3.2 Zakaz powtarzania tego samego schematu zarobku bez przerwy.</li>
+                <li>3.3 Zakaz wymuszania pieniędzy bez odegrania RP.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§4 Kolory i organizacja</h2>
+            <ul>
+                <li>4.1 Każda organizacja ma swój kolor wybrany na <span class="discord-tag">#1464182941583282339</span>.</li>
+                <li>4.2 Nazwa organizacji jest publiczna ale nie można tego używać w IC.</li>
+                <li>4.3 Terytoria organizacji są publiczne ale nie można używać tego w IC.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§5 Cooldowny i limity</h2>
+            <ul>
+                <li>5.1 Po każdej większej akcji crime obowiązuje cooldown. (<span class="discord-tag">#1465299985384996970</span>)</li>
+                <li>5.2 Administracja oraz opiekun może cofnąć pieniądze zdobyte niezgodnie z regulaminem.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§6 Zarabianie na Crime</h2>
+            <h3>6.1 Warunki zarabiania:</h3>
+            <ul>
+                <li>Trzeba mieć zdjęcie albo clipa dowodu że zrobiliście napad na naszym serwerze.</li>
+            </ul>
+            
+            <h3>6.2 Dowód w formie zdjęcia (wymagane 4 zdjęcia):</h3>
+            <ul>
+                <li>Dowód napadu</li>
+                <li>Zdjęcie godziny</li>
+                <li>Zdjęcie że jesteście na naszym serwerze</li>
+                <li>Zdjęcie że uciekliście z godziną</li>
+            </ul>
+
+            <h3>6.3 Dowód w formie wideo:</h3>
+            <ul>
+                <li>Na clipie musi być przebieg napadu i ucieczka.</li>
+            </ul>
+
+            <h3>6.4 Procedura:</h3>
+            <ul>
+                <li>Trzeba otworzyć ticket <strong>kontaktu z zarządem</strong> na serwerze głównym Warszawa RP.</li>
+                <li>Ilości zarabiania to 70% na ekonomii z zarobionego łupu.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§7 Terytoria i przejmowanie terenów</h2>
+            <ul>
+                <li>7.1 Terytoria są publiczne i każdy je widzi ale nie możecie używać tego w IC.</li>
+                <li>7.2 Każda organizacja ma swoją siedzibę (teren), którego nie może inna organizacja przejąć.</li>
+                <li>7.3 Przejmować tereny organizacji można wtedy gdy dojdzie do negocjacji.</li>
+                <li>7.4 Nie można przejmować terenów siedziby tylko te które zostały przejęte przez organizację.</li>
+                <li>7.5 Aby przejąć tereny trzeba na terenie wystrzelać cały magazynek w górę oraz musi być na serwerze 3 policjantów. <strong>Może to tylko zrobić szef organizacji.</strong></li>
+                <li>Dowód przejęcia terytorium proszę zgłaszać na ticket "kontakt z opiekunem".</li>
+                <li>7.6 Przejmować można tylko teren który jest w okolicy waszej siedziby zależnie od poziomu.</li>
+            </ul>
+            <div class="highlight-box">
+                Tereny są dostępne na kanale <span class="discord-tag">#1439962240739573861</span>.
+            </div>
+            <div class="gold-box">
+                <strong>DOMY MUSICIE SOBIE KUPIĆ SAMI NA SERWERZE FIRM</strong>
+            </div>
+        </section>
+
+        <section>
+            <h2>§8 Okrągły stół</h2>
+            <ul>
+                <li>8.1 Spotkania na okrągłym stole będą odbywały się co tydzień.</li>
+                <li>8.2 Na okrągłym stole pojawia się tylko szef organizacji.</li>
+                <li>8.3 Nie można strzelać na okrągłym stole.</li>
+                <li>8.4 Po spotkaniu wszyscy odjeżdżają bez strzelania oraz gonienia się.</li>
+                <li>8.5 10 minut przed spotkaniem nie można przejmować terenów, strzelać się, robić narko i sprzedawać.</li>
+                <li>8.6 Na okrągłym stole są omawiane nowości, negocjacje (np. narkotyków) oraz propozycje od szefów organizacji.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§9 Postanowienia końcowe</h2>
+            <ul>
+                <li>9.1 Administracja ma prawo do kontroli zarobków.</li>
+                <li>9.2 W przypadku wątpliwości – decyzja administracji oraz opiekuna crime jest ostateczna.</li>
+                <li>9.3 Jeżeli czegoś nie ma w regulaminie a jest to wbrew RP, może być karane.</li>
+                <li>9.4 Regulamin może być aktualizowany.</li>
+            </ul>
+        </section>
+    </div>
+
+    <div id="tab-discord" class="tab-content">
+        <section>
+            <h2>📜 REGULAMIN SERWERA DISCORD – CRIME</h2>
+            
+            <h3>§1 Postanowienia ogólne</h3>
+            <ul>
+                <li>1.1 Dołączając na serwer Discord oraz biorąc udział w Crime RP, akceptujesz niniejszy regulamin.</li>
+                <li>1.2 Regulamin obowiązuje wszystkich użytkowników bez wyjątku.</li>
+                <li>1.3 Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</li>
+                <li>1.4 Administracja ma prawo do edytowania regulaminu i podejmowania decyzji.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§2 Zasady ogólne Discorda</h2>
+            <ul>
+                <li>2.1 Zakaz obrażania, prowokowania, wyzywania oraz dyskryminacji innych użytkowników.</li>
+                <li>2.2 Zakaz spamu, floodu, reklam innych serwerów i treści NSFW. Zakaz nadużywania pingów (@everyone, @here).</li>
+                <li>2.3 Zakaz podszywania się pod administrację lub innych graczy.</li>
+                <li>2.4 Kanały służą do określonych tematów – trzymaj się ich przeznaczenia.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§3 Zasady Crime RP</h2>
+            <ul>
+                <li>3.1 Zakaz RDM (losowe zabijanie) oraz VDM (zabijanie pojazdem).</li>
+                <li>3.2 Zakaz PowerGamingu (robienie rzeczy niemożliwych w realnym życiu).</li>
+                <li>3.3 Zakaz MetaGamingu (wykorzystywania informacji OOC w IC).</li>
+                <li>3.4 Po śmierci postaci obowiązuje PK – brak pamięci zdarzeń (chyba że administracja zdecyduje inaczej).</li>
+                <li>3.5 Zakaz wychodzenia z gry podczas trwającej akcji RP (Combat Log).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§4 Broń i przemoc</h2>
+            <ul>
+                <li>4.1 Użycie broni musi mieć jasne uzasadnienie RP.</li>
+                <li>4.2 Przed użyciem broni należy dać szansę na odegranie RP (chyba że sytuacja na to nie pozwala).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>§5 Napady, porwania i akcje crime</h2>
+            <ul>
+                <li>5.1 Napady muszą być zgłoszone.</li>
+                <li>5.2 Zakaz napadów solo (chyba że regulamin serwera pozwala).</li>
+                <li>5.3 Zakaz porywania w strefach safe zone.</li>
+                <li>5.4 Zakaz ciągłego napadania tych samych osób (farmienie).</li>
+            </ul>
+            <div class="gold-box">
+                Po zakończonej akcji crime obowiązuje cooldown (5 minut).
+            </div>
+        </section>
+
+        <section>
+            <h2>§6 Kary</h2>
+            <div class="punishment-grid">
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Upomnienie dla organizacji</div>
+                        Pierwsze ostrzeżenie za drobne przewinienia.
+                    </div>
+                </div>
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Warn dla organizacji</div>
+                        Oficjalne ostrzeżenie (2 upomnienia = 1 warn).
+                    </div>
+                </div>
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Usunięcie organizacji</div>
+                        3 warny = usunięcie organizacji.
+                    </div>
+                </div>
+                <div class="punishment-item">
+                    <div class="punishment-desc">
+                        <div class="punishment-title">Perm ban dla organizacji</div>
+                        Osoba, która stworzyła organizację nie może ponownie jej stworzyć.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
 </div>
 
 <footer>
     <p>&copy; 2024 Kodeks Półświatka Przestępczego. Wszelkie prawa zastrzeżone.</p>
 </footer>
+
+<script>
+    function openTab(tabId) {
+        // Ukryj wszystkie treści
+        var contents = document.getElementsByClassName('tab-content');
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].className = contents[i].className.replace(" active", "");
+        }
+
+        // Usuń klasę active ze wszystkich przycisków
+        var buttons = document.getElementsByClassName('tab-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].className = buttons[i].className.replace(" active", "");
+        }
+
+        // Pokaż wybraną treść i aktywuj przycisk
+        document.getElementById(tabId).className += " active";
+        event.currentTarget.className += " active";
+    }
+</script>
 
 </body>
 </html>
